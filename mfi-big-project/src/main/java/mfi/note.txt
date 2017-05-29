@@ -1,0 +1,12 @@
+This will be the history of this project.
+
+This project target is to put all the knowledge i have in, java, html, css, js, xml ... 
+on the net ( github repository )
+
+
+1- src.main.java.mfi :
+	1.0- example
+	1.1- tech
+		1.1.1- java
+		1.1.2- html+js+css
+	1.2- generalTricks
