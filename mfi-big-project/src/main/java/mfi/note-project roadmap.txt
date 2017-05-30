@@ -8,5 +8,9 @@ on the net ( github repository )
 	1.0- example
 	1.1- tech
 		1.1.1- java
+			1.1.1.1- recursive
+				1.1.1.1.1- palindrom
+				1.1.1.1.2- gcd ( gcd, greated common divisor, in french known as PGCD, plus grand commin diviseur ) 
 		1.1.2- html+js+css
+			1.1.2.1- JSON
 	1.2- generalTricks
