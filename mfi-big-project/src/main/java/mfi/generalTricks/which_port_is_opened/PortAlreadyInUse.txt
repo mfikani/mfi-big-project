@@ -1,0 +1,21 @@
+to resolve Port already in use problem or to know which port is in use in Windows do the following : 
+
+
+1- in CMD: netstat -aon | more
+2- Ctrl+Alt+Del and look for the process Id 
+
+
+ex: port 80 is already in use
+
+netstat -aon | more : 
+  Proto  Local Address          Foreign Address        State           PID
+  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       7820
+  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       960
+  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4
+  TCP    0.0.0.0:912            0.0.0.0:0              LISTENING       396
+  TCP    0.0.0.0:2869           0.0.0.0:0              LISTENING       4
+  TCP    0.0.0.0:3389           0.0.0.0:0              LISTENING       1508
+  
+>>> Process Id using port 80 is : 7820   
+go to Task Manager, and look for process id 7820 
+note : if column pid is not shown in Task Manager, you might need to add it from View/Select Column tab
