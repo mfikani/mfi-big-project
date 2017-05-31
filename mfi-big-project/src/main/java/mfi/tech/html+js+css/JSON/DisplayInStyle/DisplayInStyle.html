@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+		<script>
+			function objKeysNumber(obj) {
+				var keys = [];
+				$.each(obj, function(key, value) {
+					keys.push(key)
+				}); 
+				return keys.length;
+			};
+
+			function displayCol2(col2){
+				var typeObj = $.type(col2);
+				var val = (typeObj == "string")?col2.substr(0,10):(typeObj == "array")?col2.length:(typeObj == "object")?objKeysNumber(col2):"not a string or an array or an object";
+				return val;
+			}
+
+			$(document).ready(function(){
+				$("button").click(function(){
+					$('div').empty();
+					$(':input[type="button"]').prop('disabled', true);
+					
+					var myUrl = $("#urlId").val();					
+					$.getJSON(myUrl, function(result){      
+						$.each(result, function(key, value){
+							$("div").append(key+":  "+displayCol2(value)+": "+$.type(value)+"<br>");
+						});          
+					});	
+
+					$(':input[type="button"]').prop('disabled', false);					
+				});
+			});
+
+			$.ajaxSetup({
+				  "error":function() { $("div").append("error: not a valid JSON ");  }
+			});
+		</script>
+	</head>
+	<body>
+		<h1 align="center">Display In Style</h1>
+		<button>Get JSON data</button>
+		<input type="text" id="urlId"/>
+		<br>
+		<br>
+		<br>
+		<div></div>
+	</body>
+</html>
+
+
