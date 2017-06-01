@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+		<!-- script src="http://code.jquery.com/jquery-1.11.1.js"></script-->
+		
+<script>
+
+function executeProcess(){
+	var myText = document.getElementById("myTextId").value
+	for(var i=0;i<3;i++){
+		alert("Reminder Attempt :"+(i+1)+"\n"+myText)
+	}
+	document.getElementById("statusId").value="Terminated"
+}
+
+
+function myFunction() {
+	var myText = document.getElementById("myTextId").value
+    var remindMeAfter = document.getElementById("remindMeAfterId").value
+	var remindMeAfterInMilliS = remindMeAfter * 1000 * 60;
+    setTimeout(function(){ executeProcess()}, remindMeAfterInMilliS);
+	//alert(myText+"\nafter\n"+remindMeAfter)
+    var now=new Date();
+    document.getElementById("startId").value=now.getHours()+":"+now.getMinutes()+" "+now.getSeconds();
+    
+    
+    var toDate = now.getTime() + (remindMeAfterInMilliS); // Offset by one day;
+    now.setTime( toDate );
+    document.getElementById("endId").value=now.getHours()+":"+now.getMinutes()+" "+now.getSeconds();
+    document.getElementById("statusId").value="In Process"
+}
+</script>
+</head>
+
+<body>
+	<div class="container">
+		<button type="button" class="btn btn-primary btn-lg">Start the REMINDER</button>
+		<br>
+		<a href="#demo" data-toggle="collapse">How it works</a>
+		<div id="demo" class="collapse">
+			1- Write the message you want to be reminded, example : check my email<br>
+			2- Specify after how many minutes you want to be reminded, example 5 minutes<br>
+			3- Click the button <b>Start the REMINDER</b><br>
+			4- <u>Continue your work in anything you are doing</u>, when it is time, you will be reminded<br> 
+			<i>tips: do not close this page to keep the reminder working</i></p>
+		</div>
+		
+		<input type="text" class="form-control" id="usr" placeholder="Enter email">
+		<input type="text" id="myTextId" class="form-control" size=40 onclick="this.value=''" placeholder="anything ex:Check my email"></input>
+    	 <p class="form-control-static">minutes</p>
+	</div>
+
+<form id="myForm" action="mailto:miled.fikani@gmail.com" method="post" enctype="text/plain">
+<br>
+<p align="center">
+<input type="button" onclick="myFunction()" style="font-size:20px" value="Start the REMINDER">
+</p>
+<br>
+<br>
+<br>
+
+<table>
+	<tr>
+    	<td>Remind me to </td>
+        <td><input type="text" id="myTextId" size=40 onclick="this.value=''" value="Check my mail"></input></td>
+    </tr>
+    <tr>
+    	<td>After </td>
+        <td><input type="text" id="remindMeAfterId" size=10 onclick="this.value=''" value="1"/> minutes</td>
+    </tr>
+	<tr>
+    	<td>Starting Time </td>
+        <td><input type="text" id="startId" size=40 disabled=true/> </td>
+    </tr>
+    <tr>
+    	<td>Ending Time </td>
+        <td><input type="text" id="endId" size=40 disabled=true/> </td>
+    </tr>
+    <tr>
+    	<td>Status </td>
+        <td><input type="text" id="statusId" size=40 disabled=true/> </td>
+    </tr>
+</table>
+<br><br><br>
+<br>
+<p style="font-size:18px;color:green;font-family: cursive;">A simple tool to remind you to do <b><i>something</i></b> after <b><i>some time</i></b></p>
+<a href="#" onclick="document.getElementById('howItWorkId').style.display='block'">How it works</a>
+
+<p style="font-size:14px;display: none;" id="howItWorkId"><br>
+1- Write the message you want to be reminded, example : check my email<br>
+2- Specify after how many minutes you want to be reminded, example 5 minutes<br>
+3- Click the button <b>Start the REMINDER</b><br>
+4- <u>Continue your work in anything you are doing</u>, when it is time, you will be reminded<br> 
+<i>tips: do not close this page to keep the reminder working</i></p>
+
+
+<br>
+<a href="#" onclick="document.getElementById('myForm').submit();">Contact me</a>
+
+
+</form>
+</body>
+
+</html>
