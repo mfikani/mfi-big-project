@@ -1,16 +1,29 @@
 package mfi.tech.java.other.checkDomains;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class CheckDomains {
 	public static void main(String[] args) {
 		CheckDomains m = new CheckDomains();
 		
+//		Whois w = new Whois();
+//		String[] urls = {"www.facebook.com","www.google.com"};
+//		w.doWhois(urls);
+		
+		
 		List alphabeticList = m.getAlphabetList(97,(97+26), false);
-		int n = 2; // 1 or 2 or 3
+		int n = 3; // 1 or 2 or 3
 		if(n == 1){
 			//COMMENT: checking www.a.com , www.b.com ... 
 			m.printList(alphabeticList);
@@ -30,17 +43,14 @@ public class CheckDomains {
 		}
 		
 		
-		
-
-		
 		//COMMENT: make ping in java
-//		m.pingExample("www.facebook.com");
+//		m.pingExample("zz.com");
 		
 		//COMMENT: display Character of code of 0 ->500
 //		m.displayNcharaters(500);
 		
 //		System.out.println("Display Capital Alphabet characters code:");
-//		m.getAlphabetList(65, 90, true);
+//		m.getAlphabetList(65, (65+26), true);
 	}
 	public void checkingCombinationsDomains(List lt){
 		for(int i=0;i<lt.size();i++){
@@ -135,4 +145,133 @@ public class CheckDomains {
 		return res;
 	}
 
+}
+
+class Whois
+{
+	/**
+	 * Method main
+	 *
+	 * The Truth is Out There!
+	 *
+	 * @param args Command line arguments
+	 */
+	public void doWhois(String[] args)
+	{
+		// Display usage if there are no command line arguments
+		if (args.length < 1)
+		{
+			System.out.println("Usage: java Whois query[@<whois.server>]");
+
+			return;
+		}
+
+		// Default server is whois.geektools.com
+		String server = "whois.geektools.com";
+
+		// Default server port is 43
+		int port = 43;
+
+		// Load the properties file.
+		try
+		{
+			final FileInputStream in = new FileInputStream("Whois.properties");
+			final Properties app = new Properties();
+
+			app.load(in);
+
+			// Get the server property
+			server = (app.getProperty("server", server));
+
+			// Get the port property
+			try
+			{
+				port = Integer.parseInt(app.getProperty("port"));
+			}
+			catch (NumberFormatException e)
+			{
+				// Do nothing!
+			}
+
+			in.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+			// Do nothing!
+		}
+		catch (IOException e)
+		{
+			System.err.println("Whois: an error occurred while loading the properties file: " + e);
+		}
+
+		// Build the whois query using command line arguments
+		final StringBuffer buff = new StringBuffer(args[0]);
+
+		for (int i = 1; i < args.length; i++)
+		{
+			buff.append(" " + args[i]);
+		}
+
+		// Convert string buffer to string
+		String query = buff.toString();
+
+		// The whois server can be specified after "@"
+		// e.g.: query@whois.networksolutions.com
+		final int at = query.lastIndexOf("@");
+		final int len = query.length();
+
+		if ((at != -1))
+		{
+			// Remove the @ if last character in query
+			// e.g.: john@doe.com@
+			if (at == (len - 1))
+			{
+				query = query.substring(0, len - 1);
+			}
+			else
+			{
+				// The whois server is specified after "@"
+				server = query.substring(at + 1, len);
+				// The whois query is specified before "@"
+				query = query.substring(0, at);
+			}
+		}
+
+		try
+		{
+			// Establish connection to whois server & port
+			final Socket connection = new Socket(server, port);
+			final PrintStream out =
+					new PrintStream(connection.getOutputStream());
+			final BufferedReader in = new BufferedReader(
+					new InputStreamReader(connection.getInputStream()));
+			String line = "";
+
+			// Send the whois query
+			out.println(query);
+			// Display the whois server's address & port
+			System.out.println("[" + server + ":" + port + "]");
+
+			// Read/display the query's result
+			while ((line = in.readLine()) != null)
+			{
+				System.out.println(line);
+			}
+		}
+		catch (java.net.UnknownHostException e)
+		{
+			// Unknown whois server
+			System.err.println("Whois: unknown host: " + server);
+
+			return;
+		}
+		catch (IOException e)
+		{
+			// Could not connect to whois server
+			System.err.println("Whois: " + e);
+
+			return;
+		}
+	}
 }
