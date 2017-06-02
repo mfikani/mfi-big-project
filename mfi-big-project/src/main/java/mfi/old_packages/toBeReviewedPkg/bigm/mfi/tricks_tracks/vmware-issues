@@ -1,0 +1,8 @@
+-Go into VM / Settings / Options / Guest Isolation
+-UNCHECK bothcheckboxes (Enable drag and drop, Enable copy and paste) and click OK.
+-Shut down the guest, and shut down VMware Workstation
+-Reboot the host computer
+-Run VMware Workstation but do not launch the guest yet.
+-Go into VM / Settings / Options / Guest Isolation for the guest, and
+-CHECK both checkboxes
+-Power On the guest.

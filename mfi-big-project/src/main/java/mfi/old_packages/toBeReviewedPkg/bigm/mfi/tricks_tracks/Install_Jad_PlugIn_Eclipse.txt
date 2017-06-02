@@ -1,0 +1,8 @@
+1- Google, search for : jad decompiler for eclipse
+2- look for (Probably in http://marketplace.eclipse.org/content/eclipse-class-decompiler) : 
+   Plugin Update Site: 
+   http://opensource.cpupk.com/decompiler/update
+3- Eclipse / Help / Install New Software : use the link of plugin, and name Jad, and install
+
+and you have jad installed on your eclipse, you can open any class even the class Object 
+ 

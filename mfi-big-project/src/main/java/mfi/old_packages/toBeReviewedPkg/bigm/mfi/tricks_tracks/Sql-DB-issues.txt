@@ -1,0 +1,18 @@
+--------------------------------------------------
+delete_cache_of_query_executin_SQL
+----------------------------------
+connect as sysdba 
+
+alter system flush buffer_cache;
+alter system flush shared_pool;
+
+--------------------------------------------------
+
+--------------------------------------------------
+lockec objects 
+--------------
+
+SELECT B.Owner, B.Object_Name, A.Oracle_Username, A.OS_User_Name  ,A.SESSION_ID
+FROM V$Locked_Object A, All_Objects B
+WHERE A.Object_ID = B.Object_ID
+--------------------------------------------------

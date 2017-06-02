@@ -1,0 +1,10 @@
+Madine SecureVPN : 
+1- https://openvpn.net/index.php/open-source/downloads.html
+   download the executable for Win 64, and install it
+2- https://securevpn.com
+   create an account and click on "Download config"
+3- copy the files from the downloaded config and paste into
+   config of the installation ( ex : C:\Program Files\OpenVPN\config)
+4- run openVPN, right-click on its icon on the task bar ( bottom right ) 
+   and click on connect 
+5- now you are connected using VPN 

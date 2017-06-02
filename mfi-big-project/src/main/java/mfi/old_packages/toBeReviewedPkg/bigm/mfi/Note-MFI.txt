@@ -1,0 +1,40 @@
+Mfi Notes : 
+
+To Add : 
+========
+
+1- Tricks & Tracks :
+-------------------- 
+-- Folder Name : tricks_tracks
+ 1.1- Install Jad PlugIn Eclipse
+________________________________________________________________________
+2- Examples : 
+-------------------
+-- Folder Name : examples 
+2.1- Quarts Jobs
+________________________________________________________________________
+3- Util :
+-------------------
+-- Folder Name : mmm_Util
+3.1- base64
+3.2- date
+3.3- javaReference
+3.4- reflection
+ ________________________________________________________________________
+
+
+
+To-Do : 
+- how to change class path and how to add jar to class path via command prompt ( t&t )
+- how to load property file in java 
+- Files Utility ( read, write ... ) 
+- File Watch Service
+- create a PDF via java
+- Soap connection
+- axis
+- axis2
+- Parsing xml
+- Parsing edifact (edi)
+- Signature, truststore
+
+   

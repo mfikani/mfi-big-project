@@ -1,0 +1,5 @@
+1- Java Parsers:
+	- DOM Parser (easy)
+	- JAXB Parser
+	- SAX Parser
+	- String operations parser
