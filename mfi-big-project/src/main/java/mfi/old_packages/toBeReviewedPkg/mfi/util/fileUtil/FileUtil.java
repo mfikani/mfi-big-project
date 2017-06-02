@@ -9,7 +9,21 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileUtil {
-	public static String readFileData(File file){
+	public static BufferedReader readFileDataTest(File file){
+		BufferedReader reader = null;
+		try {
+			FileReader fileReader = new FileReader(file);
+			reader = new BufferedReader(fileReader);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reader;
+	}
+	public static String readFileDataAsString(File file){
 		String temp, message = null;
 		try {
 			FileReader fileReader = new FileReader(file);

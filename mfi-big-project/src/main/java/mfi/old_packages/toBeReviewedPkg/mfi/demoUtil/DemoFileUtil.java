@@ -25,7 +25,7 @@ public class DemoFileUtil {
 		}
 		System.out.println();
 		System.out.println("2-Reading the file");
-		System.out.println(file.getAbsolutePath()+":\n"+FileUtil.readFileData(file));
+		System.out.println(file.getAbsolutePath()+":\n"+FileUtil.readFileDataAsString(file));
 	}
 
 }
