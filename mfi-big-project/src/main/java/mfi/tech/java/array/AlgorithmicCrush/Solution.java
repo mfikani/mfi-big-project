@@ -1,101 +1,52 @@
 package mfi.tech.java.array.AlgorithmicCrush;
 
-import static org.assertj.core.api.Assertions.catchThrowable;
-
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.util.StringTokenizer;
+import java.io.File;
+import java.util.Scanner;
+
+import mfi.old_packages.toBeReviewedPkg.mfi.util.fileUtil.FileUtil;
 
 public class Solution {
-    private static InputReader in = new InputReader(System.in);
-    private static PrintWriter out = new PrintWriter(System.out);
-
-    public static void main(String[] args) {
-    	FileInputStream in = null;
-        FileOutputStream out = null;
-
-        try {
-			try {
-			   in = new FileInputStream("t.txt");
-			   out = new FileOutputStream("output.txt");
-			   
-			   int c;
-			   while ((c = in.read()) != -1) {
-			      out.write(c);
-			   }
-			}finally {
-			   if (in != null) {
-			      in.close();
-			   }
-			   if (out != null) {
-			      out.close();
-			   }
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public static void main(String[] args) {
+		long A = System.currentTimeMillis();
+		BufferedReader reader = readTestCase();
+		Scanner scan = new Scanner(reader);
+       // Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        int M = scan.nextInt();
+        
+        /* Save interval endpoint's "k" values in array */
+        long [] array = new long[N + 1];
+        while (M-- > 0) {
+            int a = scan.nextInt();
+            int b = scan.nextInt();
+            int k = scan.nextInt();
+            array[a-1] += k;
+            array[b]   -= k;
+        }
+        scan.close();
+        
+        /* Find max value */
+        long sum = 0;
+        long max = 0;
+        for (int i = 0; i < N; i++) {
+            sum += array[i];
+            max = Math.max(max, sum);
+        }
+        
+        System.out.println(max);
+        System.out.println("Time : "+(System.currentTimeMillis() - A));
+    }
+	public static BufferedReader readTestCase(){
+		File file = new File("D:\\WORK\\mfi-big-project\\mfi-big-project\\src\\main\\java\\mfi\\tech\\java\\array\\AlgorithmicCrush\\test-case\\textcase1.txt");
+		if(file.exists()){
+			System.out.println("File Exists");
+		}else{
+			System.out.println("Wrong path");
 		}
-    	
-    	
-        solve();
-//        out.close();
-    }
-
-    private static void solve() {
-        String s = in.readLine().toLowerCase();
-        boolean[] was = new boolean[26];
-        for (int i = 0; i < s.length(); ++i) {
-            if (Character.isLetter(s.charAt(i))) {
-                was[s.charAt(i) - 'a'] = true;
-            }
-        }
-        for (int i = 0; i < 26; ++i)
-            if (!was[i]) {
-                out.print("not ");
-                break;
-            }
-        out.println("pangram");
-    }
-}
-
-class InputReader {
-    public BufferedReader reader;
-    public StringTokenizer tokenizer;
-
-    public InputReader(InputStream stream) {
-        reader = new BufferedReader(new InputStreamReader(stream), 32768);
-        tokenizer = null;
-    }
-
-    public String next() {
-        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
-            try {
-                tokenizer = new StringTokenizer(reader.readLine());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return tokenizer.nextToken();
-    }
-
-    public int nextInt() {
-        return Integer.parseInt(next());
-    }
-
-    public String readLine() {
-        try {
-            return reader.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+		
+		System.out.println("Reading the file");
+		//System.out.println(file.getAbsolutePath()+":\n"+FileUtil.readFileData(file));
+		return FileUtil.readFileDataTest(file);
+	}
 }
