@@ -41,8 +41,8 @@ So the required answer will be 200.
 		
 		
 		BufferedReader reader = readTestCase();
-		Scanner sc = new Scanner(reader);
-//		Scanner sc = new Scanner(System.in);
+//		Scanner sc = new Scanner(reader);
+		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
 		int q = sc.nextInt();
 		
@@ -60,6 +60,7 @@ So the required answer will be 200.
 					arr[ii] = arr[ii].add(BigInteger.valueOf(k));
 				}
 			}
+			printArr(arr);
 		}		
 		sc.close();
 		printArr(arr);
