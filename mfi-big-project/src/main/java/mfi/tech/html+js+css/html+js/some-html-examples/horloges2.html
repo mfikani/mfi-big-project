@@ -1,0 +1,42 @@
+<html>
+<head>
+ <script language="javascript">
+var i=0;
+var watch=1;
+var stop=0;
+var aux=0;
+function getcentaine(){
+if(i==99) i=0;
+i+=1;
+return(i);}
+function afficher(){
+  var digital=new Date();
+  var heures=digital.getHours();
+  var minutes=digital.getMinutes();
+  var secondes=digital.getSeconds();
+  var dn="AM";
+  var c=getcentaine();
+  if(c<=9) c="0"+c;
+  if(heures>=12){
+	dn="PM";
+	heures=heures-12;}
+  if(heures==0) heures=12;
+  if(minutes<=9)
+	minutes="0"+minutes;
+  if(secondes<=9)
+	secondes="0"+secondes;
+document.formulaire.horloge.value=heures+":"+minutes+":"+secondes +"."+c+" "+dn;
+if(watch==1) setTimeout("afficher();",10);
+}
+function echanger(){aux=watch;watch=stop;stop=aux;afficher();}
+</script>
+<body>
+ <form name=formulaire>
+  <input type=text name=horloge>
+  <input type="button" name="stop" value=" Stop/Continue " onClick="echanger()">
+</form>
+<script>
+afficher();
+</script>
+ </body>
+</html>

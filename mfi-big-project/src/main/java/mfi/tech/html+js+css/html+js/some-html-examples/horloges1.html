@@ -1,0 +1,28 @@
+<html>
+<head>
+ <script language="javascript">
+ function afficher(){
+  var digital=new Date();
+  var heures=digital.getHours();
+  var minutes=digital.getMinutes();
+  var secondes=digital.getSeconds();
+  var dn="AM";
+  if(heures>=12){
+	dn="PM";
+	heures=heures-12;}
+  if(heures==0) heures=12;
+  if(minutes<=9)
+	minutes="0"+minutes;
+  if(secondes<=9)
+	secondes="0"+secondes;
+document.formulaire.horloge.value=heures+":"+minutes+":"+secondes +" "+dn;
+setTimeout("afficher()",1000);
+}
+</script>
+<body>
+ <form name=formulaire>
+  <input type=text name=horloge>
+ </form>
+ <script> afficher() </script>
+ </body>
+</html>
